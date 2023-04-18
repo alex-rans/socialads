@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('build/img/icons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('build/img/icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('build/img/icons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('build/img/icons/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('build/img/icons/safari-pinned-tab.svg') }} color='#000000'">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <link rel="stylesheet" href="{{ asset('build/main.css') }}">
+    <title>Social ads quotation tool</title>
+</head>
+{% include '/layout/nav.html.twig' %}
+<body>
+{% for message in app.flashes('success') %}
+    <div class="container alert alert-success d-flex justify-content-between" role="alert">
+        <p class="mb-0">{{ message }}</p>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+{% endfor %}
+{% block body %}
+    <p>Oops you forgor to edit the body block</p>
+{% endblock %}
+{% include '/layout/footer.html.twig' %}
+{{ encore_entry_script_tags('main') }}
+{% block scrips_after %}
+{% endblock %}
+</body>
+</html>

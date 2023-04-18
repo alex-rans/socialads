@@ -1,0 +1,42 @@
+{% extends 'layout/template.html.twig' %}
+{% block body %}
+    <div class="container bg-white main-wrap">
+        <form action="/admin/user" method="get" id="searchForm">
+            <div class="row align-items-end">
+                <div class="col-12 col-sm-8 col-md-10 mb-2 mb-sm-0">
+                    <label for="nameImput" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" value="{{ app.request.query.get('name') }}">
+                </div>
+                <div class="col-12 col-sm-4 col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </div>
+            </div>
+        </form>
+        {% if app.request.query.get('name')|length == 0 %}
+            <p>Please search for a user</p>
+        {% elseif users is empty %}
+            <p>No users found</p>
+        {% else %}
+            <table class="table table-striped">
+                <thead>
+                    <th>Name</th>
+                    <th class="text-end">Actions</th>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.fullName }}</td>
+                            {% if app.user.name == user.name %}
+                                <td class="text-end"><p class="mb-0 disabled btn btn-grey">Can't edit own rights</p></td>
+                            {% elseif 'ROLE_ADMIN' in user.roles %}
+                                <td class="text-end"><a href="/admin/user/{{ user.id }}/revoke" class="btn btn-danger">Revoke admin rights</a></td>
+                            {% else %}
+                                <td class="text-end"><a href="/admin/user/{{ user.id }}/grant" class="btn btn-success">Grant admin rights</a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

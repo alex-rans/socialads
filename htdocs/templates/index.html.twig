@@ -1,0 +1,65 @@
+{% extends 'layout/template.html.twig' %}
+{% block body %}
+<div class="container main-wrap">
+{#    <h1 class="mb-3 fw-bold text-white">Social post calculator</h1>#}
+    <div class="row">
+        <div class="col-12 col-lg-8 mb-3 mb-lg-0">
+            <div class="col-12 bg-white childdiv">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="mb-3">Calculator</h2>
+                    <a class="btn btn-danger newList"><i class="fa-regular fa-file me-1"></i>New</a>
+                </div>
+                <div class="input-group mb-2">
+                    <select class="form-select" id="postSelect" aria-label="Example select with button addon">
+                        {% for post in posts %}
+                            <option value="{{ post.baseCost }}" data-langcost="{{ post.languageCost }}"
+                                    data-chancost="{{ post.channelCost }}" data-rate="{{ post.rate }}">{{ post.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <a class="btn btn-primary " id="addPost"><i class="fa-solid fa-plus me-1"></i>Add post</a>
+                </div>
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Name</span>
+                    <input type="text" class="input-sm form-control" id="nameinput">
+                </div>
+                <div class="list sortable-list">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="col-12 bg-white childdiv resultdiv">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="resulttitle">Result</h2>
+                    <label class="switch" data-bs-toggle="tooltip" data-bs-title="Toggle between decimal time and hh:mm">
+                        <input type="checkbox" value="true">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <h3 class="d-none" id="resultnametext"></h3>
+                <table class="table table-striped">
+                    <tbody class="totalresult">
+
+                    </tbody>
+                </table>
+                <div class="buttondiv">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p id="deleteModalText" class="mb-0 fs-5">Doing this will remove all unsaved changes. Are you sure?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="deleteModalConfirm">Start new</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'layout/template.html.twig' %}
+
+{% block body %}
+    <div class="container bg-white main-wrap">
+        <h1>Posts</h1>
+        <p>
+            <a href="/admin/post/create" class="btn btn-outline-success">
+                <i class="fa-sharp fa-solid fa-plus me-1"></i>Create new post
+            </a>
+        </p>
+        <table class="table table-striped">
+            <thead>
+            <th>Naam</th>
+            <th class="d-none d-sm-table-cell">Rate</th>
+            <th class="d-none d-sm-table-cell">Basis duratie</th>
+            <th class="d-none d-sm-table-cell">Extra taal duratie</th>
+            <th class="d-none d-sm-table-cell">Extra kanaal duratie</th>
+            <th class="d-none d-sm-table-cell">Acties</th>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <th>{{ post.name }}</th>
+                    <td class="d-none d-sm-table-cell">{{ post.rate }}</td>
+                    <td class="d-none d-sm-table-cell">{{ post.baseCostTime }}</td>
+                    <td class="d-none d-sm-table-cell">{{ post.languageCostTime }}</td>
+                    <td class="d-none d-sm-table-cell">{{ post.channelCostTime }}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="/admin/post/{{ post.id }}/edit" class="btn btn-outline-success"
+                               data-bs-toggle="tooltip" data-bs-title="Edit post">
+                                <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a class="btn btn-outline-danger deleteProduct"
+                               data-toggle="tooltip"
+                               data-name="{{ post.name }}"
+                               data-id="{{ post.id }}"
+                               data-bs-toggle="tooltip" data-bs-title="Delete post">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{#   Modal #}
+    <div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p id="deleteModalText"class="mb-0 fs-5">Are you sure you want to delete the post</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="deleteModalConfirm">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

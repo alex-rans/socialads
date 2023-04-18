@@ -1,0 +1,73 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css');
+//@import 'bootstrap-icons';
+@import "components/_nav.scss";
+@import "components/_calculator.scss";
+@import "components/_footer.scss";
+@import "components/_switch.scss";
+
+@font-face {
+  font-family: "TT Commons Pro";
+  src: local("TT Commons Pro"), url("../fonts/TT Commons Pro/TT Commons Pro Medium.ttf");
+}
+
+@font-face {
+  font-family: "Reckless";
+  src: local("Reckless"), url("../fonts/Reckless/TTF/Reckless-Medium.ttf");
+}
+
+body {
+  font-family: "TT Commons Pro", Arial, sans-serif;
+  background-image: url('../img/io-blend-2022-min.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection{
+  color: #fff;
+  background: #873170;
+}
+
+.main-wrap{
+  padding-bottom: 1rem;
+}
+
+.bg-white {
+  background-color: #fff;
+  color: #000;
+  border-radius: 0.3rem;
+  padding: 25px;
+}
+
+.btn {
+  border-radius: 0.3rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+#deleteModal {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+#resultnametext {
+  word-wrap: break-word;
+}
+@media (max-width: 767.98px) {
+  select .form-select {
+    margin-right: 0.5rem;
+  }
+  .list .col-sm-12 {
+    display: flex;
+  }
+  .col-sm-8 {
+    margin-bottom: 1rem;
+  }
+}
+

@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg mb-3">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">Social ads quotation tool</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+
+            <div class="ms-auto navbar-text">
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Account
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/admin/post"><i class="fa-solid fa-file-pen me-1"></i>Edit posts</a></li>
+                        <li><a class="dropdown-item" href="/admin/user"><i class="fa-solid fa-user me-1"></i>Edit users</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout"><i class="fa-solid fa-right-from-bracket me-1"></i>Logout</a></li>
+                    </ul>
+                </li>
+            {% else %}
+{#                <a href="/login">Login</a>#}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

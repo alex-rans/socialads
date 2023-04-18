@@ -1,0 +1,36 @@
+.navbar-brand {
+  font-size: 2rem;
+  font-family: "Reckless", "TT Commons Pro", Arial, sans-serif;
+}
+
+//god i hate bootstrap sometimes
+.nav-link, .navbar-brand, .navbar-text a, .navbar-text a:focus, .navbar-text a:hover, .nav-link:focus, .nav-link:hover,
+.navbar-brand:focus, .navbar-brand:hover {
+  color: #ffffff;
+  background-color: transparent;
+}
+.dropdown {
+  list-style: none;
+  .dropdown-item {
+    color: #000 !important;
+    background-color: #fff !important;
+    &:hover {
+      background-color: inherit;
+      color: #f28a5d !important;
+    }
+  }
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+
+}
+.navbar-toggler{
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 576px){
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+}

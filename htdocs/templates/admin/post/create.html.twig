@@ -1,0 +1,23 @@
+{% extends 'layout/template.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block body %}
+<div class="container bg-white main-wrap">
+    {{ form_start(form) }}
+    {{ form_row(form.Name) }}
+    <div class="input-group mb-3">
+        {{ form_label(form.Rate) }}
+        <div class="input-group">
+            <span class="input-group-text" id="addon-wrapping">&euro;</span>
+            {{ form_widget(form.Rate) }}
+        </div>
+        {{ form_help(form.Rate) }}
+        <div class="form-error">
+            {{ form_errors(form.Rate) }}
+        </div>
+    </div>
+    {{ form_row(form.Base_time) }}
+    {{ form_row(form.Extra_language_time) }}
+    {{ form_row(form.Extra_channel_time) }}
+    {{ form_end(form) }}
+</div>
+{% endblock %}

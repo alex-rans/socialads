@@ -1,0 +1,74 @@
+name: calculator
+recipe: symfony
+excludes:
+    - htdocs/vendor
+    - htdocs/var/cache
+    - htdocs/node_modules
+config:
+    php: '8.2'
+    config:
+        php: lando/php/php.ini
+        vhosts: lando/apache/000-default.conf
+    webroot: htdocs/public
+    composer_version: 2-latest
+services:
+    appserver:
+        build_as_root:
+            - 'a2enmod headers'
+        overrides:
+            image: 'devwithlando/php:8.2-apache-4'
+            build:
+                context: ./lando
+                dockerfile: Dockerfile
+        build:
+            - 'composer install -n -d htdocs/'
+        run_as_root:
+            - 'ln -snf /usr/share/zoneinfo/Europe/Brussels /etc/localtime'
+            - 'echo "Europe/Brussels" > /etc/timezone'
+    database:
+        meUser: root
+        type: compose
+        creds:
+            user: socialappcalc
+            password: socialappcalc
+            database: socialappcalc
+        ports:
+            - '33060:3306'
+        services:
+            image: 'percona/percona-server:8.0'
+            environment:
+                MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
+                MYSQL_DATABASE: socialappcalc
+                MYSQL_PASSWORD: socialappcalc
+                MYSQL_USER: socialappcalc
+                MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            command: '/docker-entrypoint.sh --defaults-file=/etc/my.cnf'
+            volumes:
+                - '$PWD/lando/mysql/my.cnf:/etc/my.cnf.d/my.cnf'
+                - 'data_database:/var/lib/mysql'
+        volumes:
+            data_database: {  }
+    phpmyadmin:
+        type: phpmyadmin
+    node:
+        type: 'node:18'
+tooling:
+    npm:
+        service: node
+        dir: /app/htdocs
+    composer:
+        service: appserver
+        cmd: composer
+        dir: /app/htdocs
+    console:
+        service: appserver
+        cmd: htdocs/bin/console
+    c:
+        service: appserver
+        cmd: htdocs/bin/console
+    symfony:
+        service: appserver
+        dir: /app/htdocs
+proxy:
+    appserver:
+        - calculator.lndo.site

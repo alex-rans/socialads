@@ -1,0 +1,84 @@
+.d-flex {
+  gap: 5px;
+  a {
+    white-space: nowrap;
+  }
+}
+
+//.list > div {
+//  border-bottom: 1px solid #7e7e7e;
+//}
+
+.list  {
+  .btn-group > .btn {
+    flex: 0 1 auto;
+  }
+  div:last-child{
+    border-bottom: none;
+  }
+  & > div {
+    border-bottom: 1px solid #7e7e7e;
+    &:hover {
+      cursor: move;
+    }
+  }
+  .sortable-child {
+    position: relative;
+  }
+}
+#pminput {
+  width: 50px;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  margin: 0;
+  padding: 0 4px;
+}
+.nameinput {
+  width: 75px;
+  //margin: 0;
+  //padding: 0 4px;
+}
+.deleteChan, .deleteLang {
+  padding: 4px 8px;
+}
+
+.childdiv {
+  min-height: 100%;
+}
+
+.totalresult {
+  td {
+    padding: 2px 8px;
+  }
+  .last-item {
+    border-bottom-width: 2px;
+    border-color: #000;
+  }
+  .buttonrow{
+    background-color: #fff;
+    border: none;
+    a{
+      width: 100%;
+    }
+  }
+}
+.postSelect {
+  gap: 0;
+  select {
+    border-radius: 0.3rem 0 0 0.3rem ;
+  }
+  .btn {
+    border-radius: 0;
+    &:last-child {
+      border-radius: 0 0.3rem 0.3rem 0;
+    }
+  }
+}
+.sortable-placeholder {
+  background-color: #d0d0d0;
+  //border: 1px dotted #696969;
+  border-radius: 0.3rem;
+  width: 100%;
+  height: 50px;
+  margin: 0.25rem 0;
+}
